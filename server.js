@@ -17,6 +17,9 @@ app.use(cors()); //enable cores
 // adding mongo connection
 require('./config/dbConnection')(app);
 
+var routes = require('./routes');
+app.use('/', routes)
+
 // creating server
 var server  = http.createServer(app);
 
