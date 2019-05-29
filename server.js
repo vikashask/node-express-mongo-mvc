@@ -2,7 +2,6 @@ const dotenv = require('dotenv').config({path:'./.env'})
 const port = process.env.PORT || 8080;
 const http = require('http');
 const bodyParser = require('body-parser');
-const app  = express();
 const cors = require('cors');
 const multer = require('multer');
 const express  = require('express');
@@ -15,7 +14,7 @@ app.use(multer().any());
 app.use(cors()); //enable cores
 
 // adding mongo connection
-require('./config/dbConnection')(app);
+require('./config/dbCon')(app);
 
 var routes = require('./routes');
 app.use('/', routes)
