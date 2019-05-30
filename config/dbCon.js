@@ -20,12 +20,6 @@ module.exports = (app) => {
         process.exit(1);
     })
 
-    process.on('SIGINT', function () {
-        mongoose.connection.close(() => {
-            console.log('Mongoose connection disconnected due to application termination');
-            app.emit('CLOSE');
-        })
-    })
 
     process.on('SIGTERM', function () {
         mongoose.connection.close(() => {
