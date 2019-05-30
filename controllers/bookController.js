@@ -6,8 +6,8 @@ var Genre = require('../models/genre');
 exports.book_list = function (req, res, next) {
   Book.find({}, 'title author ')
     .populate('author')
-    .exec(function (err, list_books) {
+    .exec(function (err, book_list) {
       if (err) return next(err);
-      res.render('book_list', { title: 'Book List', book_list: list_books });
+      res.send({book_list})
     });
 };
