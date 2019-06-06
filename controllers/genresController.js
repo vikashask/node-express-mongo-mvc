@@ -1,5 +1,4 @@
 var Book = require('../models/book');
-var Author = require('../models/author');
 var Genre = require('../models/genre');
 
 // Display list of all genre
@@ -13,7 +12,7 @@ exports.genre_list = (req, res) => {
 };
 
 // create genre
-exports.create_genre = () => {
+exports.create_genre = (req,res) => {
     // Check genre name is exists or not
     Genre.findOne({ 'name': req.body.name })
       .exec( function (err, found_genre) {
@@ -21,12 +20,15 @@ exports.create_genre = () => {
         if (err) return next(err);
         if (found_genre) {
           //genre exists
-          res.redirect(found_genre.url);
+          res.send(found_genre.url);
         }
         else {
+          let genre = new Genre({
+            name:req.body.name
+          })
           genre.save(function (err) {
             if (err) return next(err);
-            res.redirect(genre.url);
+            res.send(genre.url);
           });
         }
       });
