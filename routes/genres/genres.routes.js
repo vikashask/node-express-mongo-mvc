@@ -3,6 +3,6 @@ const router = express.Router();
 
 const genresController = require('../../controllers/genresController');
 router.get('/', genresController.genre_list);
-router.get('/createGenre', genresController.genre_list);
+router.post('/createGenre', genresController.create_genre);
 
 module.exports = router;
